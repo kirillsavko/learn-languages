@@ -1,0 +1,36 @@
+@use '../assets/styles/colors';
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  min-height: 100vh;
+  background-color: colors.$purple;
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+main {
+  flex: 1;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}

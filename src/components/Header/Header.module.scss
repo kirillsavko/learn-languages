@@ -1,0 +1,25 @@
+@use '../../assets/styles/colors';
+
+.header {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid colors.$white-transparent;
+
+  &__nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+  }
+
+  &__logo {
+    margin: 0 auto;
+  }
+
+  &__logout-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
