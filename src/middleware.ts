@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import { parse } from 'cookie';
 import { routes } from '@/constants/routes'
+import { envVars } from '@/utils/envVars'
 
 export function middleware(req: NextRequest) {
   const cookie = req.headers.get('cookie') || '';
@@ -12,10 +13,10 @@ export function middleware(req: NextRequest) {
   }
 
   try {
-    jwt.verify(token, process.env.JWT_SECRET);
+    jwt.verify(token, envVars.JWT_SECRET);
     return NextResponse.next();
-  } catch (e) {
-    return NextResponse.redirect(new URL(routes.login, req.url));
+  } catch (_e) {
+  return NextResponse.redirect(new URL(routes.login, req.url));
   }
 }
 

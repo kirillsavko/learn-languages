@@ -1,10 +1,14 @@
-import Link from 'next/link'
-import { routes } from '@/constants/routes'
+import AuthRoute from '@/components/AuthRoute/AuthRoute'
 
 export default function Home() {
-  return <div className='container'>
-    <h1>home</h1>
-    <Link href={routes.signUp}>Sign up</Link>
-    <Link href={routes.login}>Login</Link>
-  </div>
+  return (
+    <AuthRoute>
+      {(user) => (
+        <div className='container'>
+          <h1>home</h1>
+          username: {user.username}
+        </div>
+      )}
+    </AuthRoute>
+  )
 }

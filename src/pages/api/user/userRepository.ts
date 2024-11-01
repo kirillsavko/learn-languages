@@ -14,7 +14,7 @@ class repository {
     }
   }
 
-  async createUser(user: UserForAuth): Promise<UserRegistered | null> {
+  async createUser(user: UserForAuth): Promise<UserRegistered | undefined> {
     const hashedPassword = await hashPassword(user.passwordRaw)
     try {
       const queryResult = await sql`
@@ -22,9 +22,20 @@ class repository {
         VALUES (${user.username}, ${hashedPassword})
         RETURNING *;
       `;
-      return queryResult[0];
+      return queryResult.rows[0] as UserRegistered | undefined;
     } catch (e) {
       throw new Error('Error creating user in repository:', e);
+    }
+  }
+
+  async getUserById(id: number): Promise<UserRegistered | undefined> {
+    try {
+      const queryResult = await sql`
+        SELECT * FROM users WHERE id = ${id};
+      `;
+      return queryResult.rows[0] as UserRegistered | undefined;
+    } catch (e) {
+      throw new Error('Error getting user by id in repository:', e);
     }
   }
 }

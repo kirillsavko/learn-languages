@@ -1,0 +1,58 @@
+@use '../../assets/styles/colors';
+
+.input {
+  position: relative;
+  padding-bottom: 20px;
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__field {
+    padding: 8px 10px;
+    background-color: colors.$beige-light;
+    border: 2px solid colors.$beige-dark;
+    outline: none;
+    color: colors.$gray-dark;
+    border-radius: 4px;
+    font-size: 1.05rem;
+
+    &::placeholder {
+      font-size: 0;
+    }
+
+    &:disabled {
+      opacity: 0.7;
+    }
+
+    &:not([disabled]):focus {
+      border-color: darken(colors.$beige-dark, 10%);
+    }
+
+    &:not([disabled]):active {
+      border-color: darken(colors.$beige-dark, 20%);
+    }
+  }
+
+  &__placeholder {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: colors.$gray-light;
+    transition: 0.3s ease transform;
+  }
+
+  &__error {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: colors.$red;
+  }
+}
+
+.input--with-value {
+  .input__placeholder {
+    transform: translateY(-150%);
+  }
+}

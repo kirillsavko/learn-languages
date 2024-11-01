@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { UserForAuth, UserRegistered } from '@/types/user'
-import { generateJwtToken } from '@/utils/password'
 import { CredentialsWrongException, UserNotExistsException, userService } from '@/pages/api/user/userService'
-import { serializeJwtToken } from '@/utils/cookie'
+import { setJwtTokenToCookie } from '@/utils/cookie'
 
 type ReturnedData = {
   message: string
@@ -17,10 +16,7 @@ export default async function handler(
     const user: UserForAuth = JSON.parse(req.body)
     if (req.method === 'POST') {
       const foundUser = await userService.loginUser(user)
-      const jwtToken = generateJwtToken(foundUser)
-      const serialized = serializeJwtToken(jwtToken)
-
-      res.setHeader('Set-Cookie', serialized);
+      setJwtTokenToCookie(foundUser, res)
       res.status(201).json({ message: 'Ok', user: foundUser })
     }
   } catch (e) {

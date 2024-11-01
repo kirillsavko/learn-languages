@@ -6,6 +6,7 @@ import {
   UsernameNotValidException,
   userService,
 } from '@/pages/api/user/userService'
+import { setJwtTokenToCookie } from '@/utils/cookie'
 
 type ReturnedData = { message: string, user?: UserRegistered }
 
@@ -17,6 +18,8 @@ export default async function handler(
     if (req.method === 'POST') {
       const parsedUserData: UserForAuth = JSON.parse(req.body)
       const registeredUser = await userService.registerUser(parsedUserData)
+
+      setJwtTokenToCookie(registeredUser, res)
       res.status(201).json({ message: 'Ok', user: registeredUser })
     }
   } catch (e) {

@@ -14,12 +14,21 @@
   }
 
   &__logo {
+    display: flex;
+    border: none;
     margin: 0 auto;
   }
 
-  &__logout-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  &__logout {
+    &-container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    &-error {
+      margin-top: 6px;
+      color: colors.$red;
+    }
   }
 }

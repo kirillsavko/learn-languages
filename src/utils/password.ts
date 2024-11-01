@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { UserRegistered } from '@/types/user'
+import { envVars } from '@/utils/envVars'
 
 export async function hashPassword(passwordRaw: string): Promise<string> {
   const salt = await bcrypt.genSalt(10)
@@ -12,7 +13,7 @@ export async function comparePasswords(enteredPassword: string, storedHash: stri
 }
 
 export function generateJwtToken(user: UserRegistered): string {
-  return jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, {
+  return jwt.sign({ id: user.id, username: user.username }, envVars.JWT_SECRET, {
     expiresIn: '1h',
   })
 }

@@ -14,8 +14,7 @@ export default async function handler(
       res.setHeader('Set-Cookie', `token=; Path=/; HttpOnly; Max-Age=0;`);
       res.status(200).json({ message: 'Ok' })
     }
-  } catch (e) {
+  } catch (_e) {
     res.status(500).json({ message: 'Unexpected error' })
-
   }
 }
