@@ -50,12 +50,12 @@ const Words: FC = () => {
 
   if (!foundWord) {
     return <div className={styles['home__words']}>
-      <h3>Congrats! You have done all words for the chosen level!</h3>
+      <h3 className={styles['home__words-title']}>Congrats! You have done all words for the chosen level!</h3>
     </div>
   }
 
   return <div className={styles['home__words']}>
-    <h3>Click on the card to see the translation</h3>
+    <h3 className={styles['home__words-title']}>Click on the card to see the translation</h3>
     <WordToTranslate word={foundWord}/>
   </div>
 }
