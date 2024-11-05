@@ -8,14 +8,7 @@ import { useAppDispatch } from '@/store/hooks'
 import { Level, Word } from '@/types/words'
 import { WordToTranslate } from '@/components/WordToTranslate/WordToTranslate'
 
-const levelMapping: Record<Level, Level> = {
-  'A1': 'A1',
-  'A2': 'A2',
-  'B1': 'B1',
-  'B2': 'B2',
-  'C1': 'C1',
-  'C2': 'C2',
-}
+const levelMapping: Level[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
 
 const ChooseLevel: FC = () => {
   const dispatch = useAppDispatch()
@@ -26,9 +19,11 @@ const ChooseLevel: FC = () => {
 
   if (chosenLevel === null) {
     title = 'Choose level'
-    buttons = Object.keys(levelMapping).map((level: Level) => (
-      <Button key={level} onClick={() => dispatch(chooseLevel(level))}>{level}</Button>
-    ))
+    buttons = <>
+      {levelMapping.map(level => (
+        <Button key={level} onClick={() => dispatch(chooseLevel(level))}>{level}</Button>
+      ))}
+    </>
   } else {
     title = `Chosen level: ${chosenLevel}`
     buttons = <Button onClick={() => dispatch(resetLevel())}>Back to all levels</Button>
