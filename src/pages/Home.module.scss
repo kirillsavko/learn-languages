@@ -1,0 +1,24 @@
+.home {
+  &__level {
+    margin-bottom: 40px;
+
+    &-title {
+      text-align: center;
+    }
+
+    &-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+
+  &__words {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
